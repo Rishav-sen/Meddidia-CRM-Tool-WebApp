@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Articles</title>
+    <link rel="icon" href="favicon.ico">
+    <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body> 
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+
+        <a class="navbar-brand" href="E:\University\Semester 2\MS812 Project\Website Code\index.html">
+          <img src="logo.png" alt="Logo">
+        </a>   
+        <ul class="menu">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Home</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Sub-Menu Item 1</a></li>
+                    <li><a href="#">Sub-Menu Item 2</a></li>
+                    <li><a href="#">Sub-Menu Item 3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">About Us</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Sub-Menu Item 1</a></li>
+                    <li><a href="#">Sub-Menu Item 2</a></li>
+                    <li><a href="#">Sub-Menu Item 3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Sub-Menu Item 1</a></li>
+                    <li><a href="#">Sub-Menu Item 2</a></li>
+                    <li><a href="#">Sub-Menu Item 3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">News</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Sub-Menu Item 1</a></li>
+                    <li><a href="#">Sub-Menu Item 2</a></li>
+                    <li><a href="#">Sub-Menu Item 3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <div onclick="window.location.href='blogarticlespg1.html'" class="nav-link" style="cursor: pointer;">BLOG</div>
+              <!-- <ul class="dropdown-menu">
+                <li><a href="#">Sub-Menu Item 1</a></li>
+                <li><a href="#">Sub-Menu Item 2</a></li>
+                <li><a href="#">Sub-Menu Item 3</a></li>
+              </ul> -->
+            </li>
+        </ul>
+    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <button class="btn btn-login" type="button">Login</button>
+              </li>
+              <li class="nav-item">
+                <button class="btn btn-signup" type="button">Signup</button>
+              </li>
+            </ul>
+          </div>
+    
+      </nav>
+      <!-- Link to jQuery and Bootstrap JS files, sub menu won't work without these -->
+
+      <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      
+      <script>
+        const config = {
+          apiKey: "AIzaSyAw-NQtTDnu5HG2nyIZlC4GLnHhG53-sVU",
+          authDomain: "medidiaproject.firebaseapp.com",
+          databaseURL: "https://medidiaproject-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "medidiaproject",
+          storageBucket: "medidiaproject.appspot.com",
+          messagingSenderId: "276942428473",
+          appId: "1:276942428473:web:fa0e53b2bbcd13291030e8",
+          measurementId: "G-QGHFEET1RG"
+        };
+        firebase.initializeApp(config);
+
+        // Get a reference to the database
+        const database = firebase.firestore();
+
+        // Set the number of data entries per page
+        const entriesPerPage = 10;
+
+        //retrieve the data from firestore
+        let databse = firebase.firestore();
+        let myCollection = database.collection('blogposts');
+        myCollection.get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            // Access the data of each document here
+          });
+        });
+        myCollection.get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            let data = doc.data();
+
+            
+            // Create a new grid item for each document
+            let gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+
+            // Set the contents of the grid item
+            gridItem.innerHTML = `
+              <a href="${data.BlogURL}">${data.BlogName}</a>
+                <p>${data.TimeStamp}</p>
+              <div class="expert-opinion">
+                <h3>Expert Opinion </h3>
+                  <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis risus varius, rhoncus metus vel, maximus nisl. Fusce pulvinar purus vel urna blandit, in lobortis augue tempor.</p>
+              
+                  </div>
+            `;
+            document.querySelector('.grid-container').appendChild(gridItem);
+          });
+        });
+
+      </script>
+      <!-- CODE GOES HERE -->
+      <div class="grid-container">
+		<!--<div class="grid-item">
+			<a href="#">Article URL 1</a>
+			<p>${data.BlogName}</p>
+			<div class="expert-opinion">
+				<h2>Expert Opinion</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis risus varius, rhoncus metus vel, maximus nisl. Fusce pulvinar purus vel urna blandit, in lobortis augue tempor.</p>
+			</div>
+		</div>-->
+
+		<!--<div class="grid-item">
+			<a href="#">Article URL 2</a>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis risus varius, rhoncus metus vel, maximus nisl. Fusce pulvinar purus vel urna blandit, in lobortis augue tempor.</p>
+			<div class="expert-opinion">
+				<h2>Expert Opinion</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis risus varius, rhoncus metus vel, maximus nisl. Fusce pulvinar purus vel urna blandit, in lobortis augue tempor.</p>
+			</div>
+		</div>-->
+
+		<!--<div class="grid-item">
+			<a href="#">Article URL 3</a>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis risus varius, rhoncus metus vel, maximus nisl. Fusce pulvinar purus vel urna blandit, in lobortis augue tempor.</p>
+			<div class="expert-opinion">
+				<h2>Expert Opinion</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis risus varius, rhoncus metus vel, maximus nisl. Fusce pulvinar purus vel urna blandit, in lobortis augue tempor.</p>
+			</div>
+		</div> -->
+	</div> 
+    
+
+	<!--<div class="page-numbers">
+    <div class="skip-buttons">
+			<a href="blogarticlespg1.html">Skip to First</a>
+		</div>
+        <a href="blogarticlespg1.html" class="active">1</a>
+        <a href="blogarticlespg2.html">2</a>
+        <a href="blogarticlespg3.html">3</a>
+        <a href="blogarticlespg4.html">4</a>
+        <a href="blogarticlespg5.html">5</a>
+    <div class="skip-buttons">
+      <a href="blogarticlespg5.html">Skip to Last</a>
+    </div>  
+  </div>-->
+
+</script>
+
+</body>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 chatbot">
+              <h2>Chat with us</h2>
+              <p>We're here to answer your questions and help you with anything you need.</p>
+              <button class="btn btn-chat">Start Chatting</button>
+            </div>
+            <div class="col-md-6 contact">
+              <h2>Contact Us</h2>
+              <p>Med-Di-Dia Limited: Galway Technology Centre,
+                <br>Mervue Business Park, Galway, Ireland</p>
+              <p>Tel: +353 (0)91-704804 | Email: mdd@mddltd.com</p>
+              <br>
+              <p>Get in touch with us on social media or send us an email.</p>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <!-- Add more social icons here as needed -->
+              </div>
+            </div>
+        </div>
+    </footer>  
+</html>

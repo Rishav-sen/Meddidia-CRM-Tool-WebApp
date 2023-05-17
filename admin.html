@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Comment</title>
+    <link rel="icon" href="E:\University\Semester 2\MS812 Project\Website Code\images\logoicon\favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style2.css">
+</head>
+
+<body> 
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+
+        <a class="navbar-brand" href="index.html"><img src="logo.png" alt="Logo"></a>  
+        <ul class="menu">
+            <li>
+                <a href="index.html" >Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="aboutus.html" >About Us</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="news.html" >News</a>
+            </li>
+            <li class="nav-item dropdown">
+                <!-- <a href="/blogarticlespg1.html" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a> -->
+                <a href="blogarticlespg1.html">Blog</a>
+            </li>
+        </ul>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button class="btn btn-login" type="button" onclick="document.location='login.html'">Login</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-signup" type="button" onclick="document.location='signup.html'">Signup</button>
+          </li>
+        </ul>
+    </div>
+
+    </nav>
+      <!-- Link to jQuery and Bootstrap JS files, sub menu won't work without these -->
+      <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+      <script>
+        const config = {
+          apiKey: "AIzaSyAw-NQtTDnu5HG2nyIZlC4GLnHhG53-sVU",
+          authDomain: "medidiaproject.firebaseapp.com",
+          databaseURL: "https://medidiaproject-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "medidiaproject",
+          storageBucket: "medidiaproject.appspot.com",
+          messagingSenderId: "276942428473",
+          appId: "1:276942428473:web:fa0e53b2bbcd13291030e8",
+          measurementId: "G-QGHFEET1RG"
+        };
+        firebase.initializeApp(config);
+
+        // Get a reference to the database
+        const database = firebase.firestore();
+
+        // Set the number of data entries per page
+        const entriesPerPage = 10;
+
+        //retrieve the data from firestore
+        let databse = firebase.firestore();
+        let myCollection = database.collection('blogposts');
+        myCollection.get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            // Access the data of each document here
+          });
+        });
+        myCollection.get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            let data = doc.data();
+            //storing expert opinion in a variable
+            let comment = data.ExpertComment;
+
+            //if expert opionion field is not blank and the boolean value for publish is true, only then will the blog post get displayed
+            if(comment != "" && data.publish === false) {
+                // Create a new grid item for each document
+                let gridItem = document.createElement('div');
+                gridItem.className = 'blog-post';
+
+                // Set the contents of the grid item
+                gridItem.innerHTML = `
+                <div class="blog-thumbnail">
+                  <img src="https://fakeimg.pl/600x400" alt="Blog post thumbnail">
+                </div>
+                <div class="blog-content">
+                  <h4>${data.BlogName}</h4>                  
+                  <p style="font-size: 14px; color: #999; margin-top: 5px;">${data.TimeStamp}</p>
+                  <a href="${data.BlogURL}">${data.BlogURL}</a>
+                </div>
+                <div class="expert-comment">
+                  <h2>Expert Comment</h2>
+                  <div class="admin-expert-text-block">
+                    <p>${data.ExpertComment}</p>
+                  </div>
+                  <div class="admin-buttons">
+                    <button style="background-color: #FF6600;">Publish</button>
+                    <!--<button style="background-color: black;">Delete</button>-->
+                  </div>
+                </div>
+                `;
+                document.querySelector('.expert-container').appendChild(gridItem);
+
+            }
+
+
+            
+            
+          });
+        });
+
+      </script>
+      <!-- CODE GOES HERE -->
+	<!-- Container for the blog posts and expert comments -->
+	<div class="expert-container">
+
+		<!-- Blog post 1 -->
+        <!--<div class="blog-post">
+            <div class="blog-thumbnail">
+              <img src="https://fakeimg.pl/600x400" alt="Blog post thumbnail">
+            </div>
+            <div class="blog-content">
+              <h2>Blog Post Title</h2>
+              <p style="font-size: 14px; color: #999; margin-top: 5px;">April 6, 2023</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus, nisl at faucibus tristique, 
+                purus eros sodales ex, quis tincidunt nulla nisl quis velit.</p>
+            </div>
+            <div class="expert-comment">
+              <h2>Expert Comment</h2>
+              <div class="admin-expert-text-block">
+                <p>This is a sample paragraph of text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus, nisl at 
+                    faucibus tristique, purus eros sodales ex, quis tincidunt nulla nisl quis veli</p>
+              </div>
+              <div class="admin-buttons">
+                <button style="background-color: #FF6600;">Publish</button>
+                <button style="background-color: black;">Delete</button>
+              </div>
+            </div>
+        </div>-->
+       </div>
+
+          
+
+</body>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 chatbot">
+              <h2>Chat with us</h2>
+              <p>We're here to answer your questions and help you with anything you need.</p>
+              <button class="btn btn-chat">Start Chatting</button>
+            </div>
+            <div class="col-md-6 contact">
+              <h2>Contact Us</h2>
+              <p>Med-Di-Dia Limited: Galway Technology Centre,
+                <br>Mervue Business Park, Galway, Ireland</p>
+              <p>Tel: +353 (0)91-704804 | Email: mdd@mddltd.com</p>
+              <br>
+              <p>Get in touch with us on social media or send us an email.</p>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <!-- Add more social icons here as needed -->
+              </div>
+            </div>
+        </div>
+    </footer>  
+</html>
