@@ -113,6 +113,25 @@ nav {
     color: #FF6600; /* Orange text color */
   }
   
+  /* Already have an account / Create Account Hover */
+  a.badge.badge-light:hover { 
+   
+    background-color: black;
+    color: #FF6600;
+    display: inline-block;
+  }
+  
+  .loginform {
+    max-width: 400px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Adjust the border radius as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+    transform: translateZ(0); /* Apply the 3D effect */
+  }
+  
+  
+  
   
   /* Responsive styles */
   
@@ -335,6 +354,8 @@ nav {
     margin-top: 20px;
     border: 1px solid gray;
     padding: 10px;
+    max-height: 200px; /* Adjust the maximum height as needed */
+    overflow-y: scroll;
   }
   
   .page-numbers {

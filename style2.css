@@ -1,4 +1,4 @@
-75% of storage used … You use storage when you save to Drive, back up to Google Photos, and send and receive email on Gmail
+
 /* Navbar */
 nav {
   position: fixed;
@@ -423,16 +423,27 @@ footer .chatbot-icon a {
 }
 
 /* ------------------------ ADMIN PAGE ------------------------ */
-.admin-expert-text-block {
-  /* background-color: #f1f1f1;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px; */
+/* .admin-expert-text-block {
 
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: #dddd;
+  border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
   padding: 20px;
+  overflow-y: auto;
+  height: 200px;
+} */
+.admin-expert-text-block {
+  background-color: #dddd;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 20px;
+  overflow-y: auto;
+  height: 200px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4); /* Adjust the shadow values as needed */
 }
+
 
 .admin-buttons {
   text-align: center;

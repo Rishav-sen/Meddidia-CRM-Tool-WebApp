@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Articles</title>
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="E:\University\Semester 2\MS812 Project\Med_di_dia_main\WEBSITE_MOCK\favicon.ico">
     <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,70 +14,40 @@
 </head>
 
 <body> 
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
 
-        <a class="navbar-brand" href="E:\University\Semester 2\MS812 Project\Website Code\index.html">
-          <img src="logo.png" alt="Logo">
-        </a>   
-        <ul class="menu">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Home</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Sub-Menu Item 1</a></li>
-                    <li><a href="#">Sub-Menu Item 2</a></li>
-                    <li><a href="#">Sub-Menu Item 3</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">About Us</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Sub-Menu Item 1</a></li>
-                    <li><a href="#">Sub-Menu Item 2</a></li>
-                    <li><a href="#">Sub-Menu Item 3</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Services</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Sub-Menu Item 1</a></li>
-                    <li><a href="#">Sub-Menu Item 2</a></li>
-                    <li><a href="#">Sub-Menu Item 3</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">News</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Sub-Menu Item 1</a></li>
-                    <li><a href="#">Sub-Menu Item 2</a></li>
-                    <li><a href="#">Sub-Menu Item 3</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <div onclick="window.location.href='blogarticlespg1.html'" class="nav-link" style="cursor: pointer;">BLOG</div>
-              <!-- <ul class="dropdown-menu">
-                <li><a href="#">Sub-Menu Item 1</a></li>
-                <li><a href="#">Sub-Menu Item 2</a></li>
-                <li><a href="#">Sub-Menu Item 3</a></li>
-              </ul> -->
-            </li>
+    <a class="navbar-brand" href="index.html"><img src="images\logo.png" alt="Logo"></a>  
+    <ul class="menu">
+        <li class="nav-item dropdown">
+            <a href="index.html" >Home</a>      
+        </li>
+        <li class="nav-item dropdown">
+            <a href="aboutus.html">About Us</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="news.html">News</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="blogarticlespg1.html">Blog</a>
+        </li>
+    </ul>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button class="btn btn-login" type="button" onclick="document.location='login.html'">Login</button>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-signup" type="button" onclick="document.location='signup.html'">Signup</button>
+          </li>
         </ul>
-    
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <button class="btn btn-login" type="button">Login</button>
-              </li>
-              <li class="nav-item">
-                <button class="btn btn-signup" type="button">Signup</button>
-              </li>
-            </ul>
-          </div>
-    
-      </nav>
+      </div>
+
+  </nav>
       <!-- Link to jQuery and Bootstrap JS files, sub menu won't work without these -->
 
       <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
@@ -138,10 +108,6 @@
                 document.querySelector('.grid-container').appendChild(gridItem);
 
             }
-
-
-            
-            
           });
         });
 
