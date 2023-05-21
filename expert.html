@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expert comment</title>
-    <link rel="icon" href="E:\University\Semester 2\MS812 Project\Med_di_dia_main\WEBSITE_MOCK\favicon.ico">
+    <link rel="icon" href="E:\University\Semester 2\MS812 Project\Website Code\images\logoicon\favicon.ico">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -72,8 +72,39 @@
         // Get a reference to the database
         const database = firebase.firestore();
 
-        // Set the number of data entries per page
-        const entriesPerPage = 10;
+        // Function to handle the comment submission and update the 'ExpertComment' field
+        function handleSubmit(commentId) {
+            const commentInput = document.getElementById(`comment_${commentId}`);
+            const comment = commentInput.value;
+
+            if (comment.trim() === '') {
+              alert('Please fill in the comment field.');
+              return;
+            }
+
+            updateData(commentId, comment);
+        } 
+
+        // Function to update the 'ExpertComment' field in Firestore
+        function updateData(commentId, comment) {
+            const docRef = database.collection('blogposts').doc(commentId);
+
+            docRef
+                .get()
+                .then((doc) => {
+                    doc.ref
+                        .update({ ExpertComment: comment })
+                        .then(() => {
+                            alert('Blog has been successfully updated!');
+                            console.log('Blog has been successfully updated!');
+                            location.reload(); // Reload the page
+                        })
+                        .catch((error) => {
+                            alert('Error publishing the blog: ' + error);
+                            console.error('Error publishing the blog:', error);
+                        });
+                });
+        }
 
         //retrieve the data from firestore
         let databse = firebase.firestore();
@@ -108,26 +139,22 @@
                 <div class="expert-comment">
                   <h2>Expert Comment</h2>
                   <form>
-                    <label for="name">Name:</label>
+                    <!--<label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required>-->
 
-                    <label for="comment">Comment:</label>
-                    <textarea id="comment" name="comment" required></textarea>
+                    <label for="comment_${doc.id}"></label>
+                    <textarea id="comment_${doc.id}" name="comment_${doc.id}" required></textarea>
 
-                    <input type="submit" value="Send for Approval">
+                    <button type="button" onclick="handleSubmit('${doc.id}')" style="background-color: #FF6600;">Send for Approval</button>
                   </form>
                 </div>
                 `;
+                
                 document.querySelector('.expert-container').appendChild(gridItem);
-
-            }
-
-
-            
-            
+            }           
           });
         });
 

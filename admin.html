@@ -72,9 +72,23 @@
         // Get a reference to the database
         const database = firebase.firestore();
 
-        // Set the number of data entries per page
-        const entriesPerPage = 10;
+        // Function to update the 'publish' field of a document
+        function updateData(blogid) {
+          const docRef = database.collection('blogposts').doc(blogid);
 
+          docRef.get().then((doc) => {
+            doc.ref.update({ publish: true })
+              .then(() => {
+                alert('Blog has been successfully published!');
+                console.log('Blog has been successfully published!');
+              })
+              .catch((error) => {
+                alert('Error publishing the blog:', error);
+                console.error('Error publishing the blog:', error);
+              });
+          });
+        }
+        
         //retrieve the data from firestore
         let databse = firebase.firestore();
         let myCollection = database.collection('blogposts');
@@ -111,7 +125,7 @@
                     <p>${data.ExpertComment}</p>
                   </div>
                   <div class="admin-buttons">
-                    <button style="background-color: #FF6600;">Publish</button>
+                    <button onclick="updateData('${doc.id}')" style="background-color: #FF6600;">Publish</button>
                     <!--<button style="background-color: black;">Delete</button>-->
                   </div>
                 </div>
